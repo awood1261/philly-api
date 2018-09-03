@@ -18,7 +18,7 @@ function SimpleAppBar(props) {
       <AppBar position="sticky" color="default">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Where2Vote
+            {props.children}
           </Typography>
         </Toolbar>
       </AppBar>

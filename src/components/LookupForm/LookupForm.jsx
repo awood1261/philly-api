@@ -63,7 +63,10 @@ class TextFields extends React.Component {
     zip: '',
     locationName: '',
     lat: '',
-    long: ''
+    long: '',
+    isLoading: true,
+    madeInitialCall: null,
+    showErrorScreen: false
   };
 
   handleChange = name => event => {
@@ -73,25 +76,44 @@ class TextFields extends React.Component {
   };
 
   handleClick = () => {
+      this.setState({
+        isLoading: true,
+        madeInitialCall: true
+      });
       axios.get(`http://api.phila.gov:80/polling-places/v1/?ward=${this.state.ward}&division=${this.state.division}`)
         .then((resp) => {
-            const {
+            if ( resp.data.features.length === 0 ) {
+              console.log('here');
+              this.setState({
+                isLoading: false,
+                showErrorScreen: true
+              });
+              <LookupResult />
+            } else {
+              const {
                 display_address: returnAddress,
                 location: returnLocation,
                 lat: returnLat,
                 lng: returnLng,
                 zip_code: zip
-            } = resp.data.features[0].attributes;
-            console.log(resp.data.features[0].attributes);
-            console.log(returnAddress);
-            console.log(returnLocation);
-            this.setState({
-                address: returnAddress,
-                locationName: returnLocation,
-                lat: returnLat,
-                long: returnLng,
-                zip: zip
-            })
+              } = resp.data.features[0].attributes;
+
+              if ( returnLat === '' || returnLng === '' ) {
+                this.setState({
+                  showErrorScreen: true
+                });
+              } else {
+                this.setState({
+                  address: returnAddress,
+                  locationName: returnLocation,
+                  lat: returnLat,
+                  long: returnLng,
+                  zip: zip,
+                  isLoading: false,
+                  showErrorScreen: false
+                });
+              }
+            }
         });
   }
 

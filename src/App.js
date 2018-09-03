@@ -5,6 +5,7 @@ import './components/Global/base.css';
 import './App.css';
 import Header from  './components/Header/Header';
 import LookupForm from './components/LookupForm/LookupForm';
+import Button from './components/Button/Button.jsx';
 
 
 class App extends Component {
@@ -17,8 +18,9 @@ class App extends Component {
     return (
       <div className="App">
         <CssBaseline />
-        <Header />
+        <Header>Where2Vote</Header>
         <LookupForm />
+        <Button />
         {/* <p>Integer quis tristique purus. Fusce id urna sit amet lorem accumsan vestibulum. Nullam odio magna, finibus sit amet ipsum sed, aliquet posuere tortor. Quisque ac accumsan magna. Nunc eu dui a sem molestie cursus. Suspendisse eget quam in eros condimentum bibendum. Aliquam laoreet semper dui, a faucibus tortor laoreet in.</p>
 
         <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis viverra, magna sit amet congue pharetra, orci justo bibendum metus, eget ultrices turpis sapien id sapien. Curabitur magna dui, aliquam sit amet mi cursus, feugiat tincidunt libero. Praesent mollis non metus eu viverra. Duis posuere, dolor nec hendrerit hendrerit, eros massa imperdiet velit, vitae efficitur dolor odio id purus. Suspendisse potenti. Maecenas et odio dui. Maecenas id quam imperdiet, luctus sapien eu, ornare metus. Mauris sed tincidunt lectus. Sed pharetra ante at lacus congue, et mattis velit luctus. Praesent posuere, sem eu porttitor tristique, ante tortor ullamcorper lacus, nec faucibus ligula nisl a metus. Donec eget orci magna. Nunc vulputate venenatis sapien at consequat. Pellentesque vestibulum consequat luctus. Ut ut mollis augue. Sed congue scelerisque pretium.</p>
